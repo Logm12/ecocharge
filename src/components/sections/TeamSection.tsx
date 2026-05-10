@@ -41,7 +41,7 @@ export function TeamSection() {
           <h3 className="text-2xl md:text-4xl font-bold tracking-tight relative z-10">Ready to power the smarter city?</h3>
           <p className="text-white/80 relative z-10 max-w-lg">Join our pilot program. Get early deployment mapping for your municipalities or real estate developments.</p>
           <div className="relative z-10 pt-4">
-            <Button className="bg-white text-brand-green hover:bg-canvas text-lg px-8 py-4 border-none shadow-xl active:scale-95 transition-all">
+            <Button variant="inverted" className="text-lg px-8 py-4 active:scale-95 transition-all">
               Partner with Us
             </Button>
           </div>

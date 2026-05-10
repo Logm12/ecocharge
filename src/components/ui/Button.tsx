@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "inverted";
   className?: string;
 }
 
@@ -17,6 +17,7 @@ export function Button({
   const variants = {
     primary: "bg-accent-green text-white hover:bg-[#006640] shadow-sm",
     secondary: "bg-transparent border border-house-green text-house-green hover:bg-house-green/5",
+    inverted: "bg-white text-brand-green hover:bg-canvas shadow-xl border-none",
   };
 
   return (
