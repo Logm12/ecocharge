@@ -1,19 +1,69 @@
+"use client";
+
 import { Button } from "@/components/ui/Button";
-import { User } from "lucide-react";
+import { User, ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef, useState, useEffect, useCallback } from "react";
 
 const TEAM = [
-  { role: "Chief Executive Officer", name: "Founding Leader" },
-  { role: "Chief Technology Officer", name: "Hardware Architect" },
-  { role: "Chief Operations Officer", name: "Strategy Executive" },
-  { role: "Chief Marketing Officer", name: "Brand Director" },
-  { role: "Chief Strategy Officer", name: "Partnership Lead" },
+  { name: "Doan Thi Phuong Thao", role: "International School - Vietnam National University - Co-Founder", image: "/images/teams/Doan Thi Phuong Thao.jpg" },
+  { name: "Nguyen Thi Phuong Thao", role: "International School - Vietnam National University - Co-Founder", image: "/images/teams/Nguyen Thi Phuong Thao.jpg" },
+  { name: "Ngo Minh Chau", role: "International School - Vietnam National University - Founder", image: "/images/teams/Ngo Minh Chau.jpg" },
+  { name: "Tran Quang Tiep", role: "International School - Vietnam National University", image: "/images/teams/Tran Quang Tiep.jpg" },
+  { name: "To Ngoc Minh", role: "International School - Vietnam National University", image: "/images/teams/To Ngoc Minh.jpg" },
+  { name: "Mac Pham Thien Long", role: "International School - Vietnam National University", image: "/images/teams/Mac Pham Thien Long.jpg" },
+  { name: "Le Dai Thanh", role: "International School - Vietnam National University", image: "/images/teams/Le Dai Thanh.jpg" },
 ];
 
 export function TeamSection() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const scroll = useCallback((direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      const card = scrollContainerRef.current.firstElementChild as HTMLElement;
+      const cardWidth = card ? card.offsetWidth + 24 : clientWidth; // 24 is gap-6
+
+      let scrollTo = 0;
+      const isAtEnd = scrollLeft >= scrollWidth - clientWidth - 25; // 25px tolerance
+      const isAtStart = scrollLeft <= 25;
+
+      if (direction === "left") {
+        if (isAtStart) {
+          scrollTo = scrollWidth; // Wrap around to the end
+        } else {
+          scrollTo = scrollLeft - cardWidth;
+        }
+      } else {
+        if (isAtEnd) {
+          scrollTo = 0; // Wrap around to the beginning
+        } else {
+          scrollTo = scrollLeft + cardWidth;
+        }
+      }
+
+      scrollContainerRef.current.scrollTo({
+        left: scrollTo,
+        behavior: "smooth"
+      });
+    }
+  }, []);
+
+  // Auto-play effect: every 5 seconds unless paused by hovering
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setInterval(() => {
+      scroll("right");
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [isPaused, scroll]);
+
   return (
     <section className="w-full bg-surface text-house-green py-24 px-6 md:px-12 relative">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
-        
+
         <div className="text-center mb-16 max-w-2xl">
           <div className="text-accent-green font-bold uppercase tracking-widest text-sm mb-3">Leadership</div>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight-brand mb-4">Expert Founding Team</h2>
@@ -22,17 +72,58 @@ export function TeamSection() {
           </p>
         </div>
 
-        {/* Team Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full mb-20">
-          {TEAM.map((member, idx) => (
-            <div key={idx} className="bg-canvas border border-black/5 rounded-card p-6 flex flex-col items-center text-center group hover:shadow-md transition-shadow duration-300">
-              <div className="w-16 h-16 rounded-full bg-surface flex items-center justify-center text-brand-green mb-4 group-hover:scale-110 transition-transform duration-300">
-                <User size={24} />
+        {/* Team Carousel Wrapper */}
+        <div
+          className="relative w-full mb-20 group/carousel"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+
+          {/* Left Nav Button */}
+          <button
+            onClick={() => scroll("left")}
+            aria-label="Previous team members"
+            className="absolute -left-2 md:-left-6 lg:-left-10 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-white shadow-lg border border-black/5 flex items-center justify-center text-house-green transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer opacity-0 md:opacity-60 group-hover/carousel:opacity-100 backdrop-blur-sm hover:text-brand-green"
+          >
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
+
+          {/* Carousel Row */}
+          <div
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 w-full scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden scroll-smooth"
+          >
+            {TEAM.map((member, idx) => (
+              <div
+                key={idx}
+                className="flex-shrink-0 w-[calc((100%-24px)/2)] md:w-[calc((100%-48px)/3)] lg:w-[calc((100%-96px)/5)] snap-start bg-canvas border border-black/5 rounded-card p-6 flex flex-col items-center text-center group hover:shadow-md transition-shadow duration-300"
+              >
+                <div className="w-20 h-20 rounded-full bg-surface flex items-center justify-center text-brand-green mb-4 group-hover:scale-110 transition-transform duration-300 overflow-hidden shadow-inner border border-black/5 relative">
+                  {member.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover object-center select-none"
+                    />
+                  ) : (
+                    <User size={28} />
+                  )}
+                </div>
+                <h3 className="font-bold text-house-green mb-1">{member.name}</h3>
+                <div className="text-xs font-semibold uppercase text-house-green/50 tracking-wider">{member.role}</div>
               </div>
-              <h3 className="font-bold text-house-green mb-1">{member.name}</h3>
-              <div className="text-xs font-semibold uppercase text-house-green/50 tracking-wider">{member.role}</div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Right Nav Button */}
+          <button
+            onClick={() => scroll("right")}
+            aria-label="Next team members"
+            className="absolute -right-2 md:-right-6 lg:-right-10 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-white shadow-lg border border-black/5 flex items-center justify-center text-house-green transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer opacity-0 md:opacity-60 group-hover/carousel:opacity-100 backdrop-blur-sm hover:text-brand-green"
+          >
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
         </div>
 
         {/* Closing CTA */}
