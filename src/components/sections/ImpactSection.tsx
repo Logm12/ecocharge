@@ -1,4 +1,4 @@
-import { BarChart3, Globe, Leaf } from "lucide-react";
+import { BarChart3, Globe, Leaf, BatteryCharging, Zap } from "lucide-react";
 
 export function ImpactSection() {
   return (
@@ -24,24 +24,37 @@ export function ImpactSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Primary Stat */}
-          <div className="bg-canvas/5 border border-canvas/10 rounded-card p-8 md:p-12 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-accent-green/20 rounded-full filter blur-[80px] group-hover:bg-accent-green/30 transition-colors duration-500"></div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Single Step Yield */}
+          <div className="bg-canvas/5 border border-canvas/10 rounded-card p-8 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-accent-green/15 rounded-full filter blur-[50px] group-hover:bg-accent-green/25 transition-colors duration-500"></div>
             <div className="relative z-10">
-              <BarChart3 size={32} className="text-accent-green mb-6" />
-              <div className="text-5xl md:text-7xl font-black tracking-tighter text-canvas mb-2">60,000 <span className="text-xl md:text-2xl font-medium text-canvas/60 tracking-normal">kWh / yr</span></div>
-              <p className="text-canvas/70 max-w-sm text-lg">Estimated energy density generation per 100 meter urban installation strip.</p>
+              <Zap size={28} className="text-accent-green mb-6" />
+              <div className="text-4xl lg:text-5xl font-black tracking-tighter text-canvas mb-2">5–7 <span className="text-lg lg:text-xl font-medium text-canvas/60 tracking-normal">mW / Step</span></div>
+              <p className="text-canvas/70 max-w-xs text-sm lg:text-base">Instantaneous kinetic energy yield harvested and stored from a single average footstep.</p>
             </div>
           </div>
 
-          {/* Secondary Stat */}
-          <div className="bg-canvas/5 border border-canvas/10 rounded-card p-8 md:p-12 relative overflow-hidden group">
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand-green/20 rounded-full filter blur-[80px] group-hover:bg-brand-green/30 transition-colors duration-500"></div>
+          {/* Conversions to Charge */}
+          <div className="bg-canvas/5 border border-canvas/10 rounded-card p-8 relative overflow-hidden group">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-brand-green/15 rounded-full filter blur-[50px] group-hover:bg-brand-green/25 transition-colors duration-500"></div>
             <div className="relative z-10">
-              <Leaf size={32} className="text-accent-green mb-6" />
-              <div className="text-5xl md:text-7xl font-black tracking-tighter text-canvas mb-2">-60 <span className="text-xl md:text-2xl font-medium text-canvas/60 tracking-normal">Tons CO2</span></div>
-              <p className="text-canvas/70 max-w-sm text-lg">Direct footprint reduction per system per year. Aiming for localized Net Zero target grids.</p>
+              <div className="flex items-center justify-between mb-6">
+                <BatteryCharging size={28} className="text-accent-green" />
+                <span className="text-[10px] font-black tracking-widest uppercase bg-accent-green/10 border border-accent-green/20 text-accent-green px-2 py-1 rounded-full animate-pulse">+1% Active</span>
+              </div>
+              <div className="text-4xl lg:text-5xl font-black tracking-tighter text-canvas mb-2">1.7 <span className="text-lg lg:text-xl font-medium text-canvas/60 tracking-normal">Mins Walk</span></div>
+              <p className="text-canvas/70 max-w-xs text-sm lg:text-base">Average duration of dense pedestrian footfall needed to supply +1% charge directly to user smartphones.</p>
+            </div>
+          </div>
+
+          {/* Monthly Harvest / Net-Zero Grid */}
+          <div className="bg-canvas/5 border border-canvas/10 rounded-card p-8 relative overflow-hidden group">
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-accent-green/15 rounded-full filter blur-[50px] group-hover:bg-accent-green/25 transition-colors duration-500"></div>
+            <div className="relative z-10">
+              <BarChart3 size={28} className="text-accent-green mb-6" />
+              <div className="text-4xl lg:text-5xl font-black tracking-tighter text-canvas mb-2">1.7 <span className="text-lg lg:text-xl font-medium text-canvas/60 tracking-normal">kWh / mo</span></div>
+              <p className="text-canvas/70 max-w-xs text-sm lg:text-base">Clean power captured monthly per installation station (based on 2000 daily users). Supports localized grid offsets.</p>
             </div>
           </div>
         </div>

@@ -5,11 +5,11 @@ import { User, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState, useEffect, useCallback } from "react";
 
 const TEAM = [
+  { name: "Ngo Minh Chau", role: "International School - Vietnam National University - Founder", image: "/images/teams/Ngo Minh Chau.jpg" },
   { name: "Doan Thi Phuong Thao", role: "International School - Vietnam National University - Co-Founder", image: "/images/teams/Doan Thi Phuong Thao.jpg" },
   { name: "Nguyen Thi Phuong Thao", role: "International School - Vietnam National University - Co-Founder", image: "/images/teams/Nguyen Thi Phuong Thao.jpg" },
-  { name: "Ngo Minh Chau", role: "International School - Vietnam National University - Founder", image: "/images/teams/Ngo Minh Chau.jpg" },
-  { name: "Tran Quang Tiep", role: "International School - Vietnam National University", image: "/images/teams/Tran Quang Tiep.jpg" },
   { name: "To Ngoc Minh", role: "International School - Vietnam National University", image: "/images/teams/To Ngoc Minh.jpg" },
+  { name: "Tran Quang Tiep", role: "International School - Vietnam National University", image: "/images/teams/Tran Quang Tiep.jpg" },
   { name: "Mac Pham Thien Long", role: "International School - Vietnam National University", image: "/images/teams/Mac Pham Thien Long.jpg" },
   { name: "Le Dai Thanh", role: "VNU University of Economics and Business", image: "/images/teams/Le Dai Thanh.jpg" },
 ];
@@ -93,27 +93,37 @@ export function TeamSection() {
             ref={scrollContainerRef}
             className="relative flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 w-full scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden scroll-smooth"
           >
-            {TEAM.map((member, idx) => (
-              <div
-                key={idx}
-                className="flex-shrink-0 w-[calc((100%-24px)/2)] md:w-[calc((100%-48px)/3)] lg:w-[calc((100%-96px)/5)] snap-start bg-canvas border border-black/5 rounded-card p-6 flex flex-col items-center text-center group hover:shadow-md transition-shadow duration-300"
-              >
-                <div className="w-20 h-20 rounded-full bg-surface flex items-center justify-center text-brand-green mb-4 group-hover:scale-110 transition-transform duration-300 overflow-hidden shadow-inner border border-black/5 relative">
-                  {member.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover object-center select-none"
-                    />
-                  ) : (
-                    <User size={28} />
+            {TEAM.map((member, idx) => {
+              const isMentor = member.role.toLowerCase().includes("mentor");
+              return (
+                <div
+                  key={idx}
+                  className={`flex-shrink-0 w-[calc((100%-24px)/2)] md:w-[calc((100%-48px)/3)] lg:w-[calc((100%-96px)/5)] snap-start border rounded-card p-6 flex flex-col items-center text-center group hover:shadow-md transition-all duration-300 ${isMentor
+                    ? "bg-house-green border-accent-green/30 shadow-xl ring-1 ring-accent-green/20"
+                    : "bg-canvas border-black/5 text-house-green"
+                    }`}
+                >
+                  <div className={`w-20 h-20 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 overflow-hidden shadow-inner border relative ${isMentor ? "bg-white/10 border-accent-green/30 text-accent-green" : "bg-surface border-black/5 text-brand-green"
+                    }`}>
+                    {member.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover object-center select-none"
+                      />
+                    ) : (
+                      <User size={28} />
+                    )}
+                  </div>
+                  {isMentor && (
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-accent-green bg-accent-green/10 px-2 py-0.5 rounded-full mb-2 border border-accent-green/30 animate-pulse">Advisor</span>
                   )}
+                  <h3 className={`font-bold mb-1 ${isMentor ? 'text-white' : 'text-house-green'}`}>{member.name}</h3>
+                  <div className={`text-xs font-semibold uppercase tracking-wider ${isMentor ? 'text-canvas/60' : 'text-house-green/50'}`}>{member.role}</div>
                 </div>
-                <h3 className="font-bold text-house-green mb-1">{member.name}</h3>
-                <div className="text-xs font-semibold uppercase text-house-green/50 tracking-wider">{member.role}</div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Right Nav Button */}

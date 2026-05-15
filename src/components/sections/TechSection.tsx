@@ -40,16 +40,16 @@ export function TechSection() {
 
           <div className="space-y-8 text-sm md:text-base text-house-green/80">
             <div className="relative pl-6 border-l-2 border-brand-green/30">
-              <h3 className="font-bold text-house-green uppercase tracking-wider">01. Polycarbonate Cover</h3>
-              <p>High-tensile durability that captures direct kinetic pressure while weathering the urban element.</p>
+              <h3 className="font-bold text-house-green uppercase tracking-wider">01. Rugged Cover & OLED Hub</h3>
+              <p>High-tensile polycarbonate that captures kinetic footfalls, integrated with live USB ports and OLED status displays.</p>
             </div>
             <div className="relative pl-6 border-l-2 border-accent-green">
-              <h3 className="font-bold text-house-green uppercase tracking-wider text-accent-green">02. Piezoelectric Matrix</h3>
-              <p>High-performance quartz crystals converting vibration stress directly into voltage differential.</p>
+              <h3 className="font-bold text-house-green uppercase tracking-wider text-accent-green">02. Kinetic Piezoelectric Matrix</h3>
+              <p>Durable piezoelectric discs converting vibrational compression into electrical potential via precise bridge rectifiers.</p>
             </div>
             <div className="relative pl-6 border-l-2 border-house-green/30">
-              <h3 className="font-bold text-house-green uppercase tracking-wider">03. Aluminum Ground Base</h3>
-              <p>Structural isolation rigid layer ensuring energy vector is targeted upwards through the matrix.</p>
+              <h3 className="font-bold text-house-green uppercase tracking-wider">03. ESP32 Core Control Base</h3>
+              <p>Aluminum chassis housing the ESP32 IoT node, high-capacity capacitors, and boost converters for stable energy delivery.</p>
             </div>
           </div>
         </motion.div>
@@ -71,7 +71,7 @@ export function TechSection() {
               }}
               className="absolute inset-0 bg-white/40 backdrop-blur-md border border-white/60 rounded-xl shadow-2xl z-30 flex items-center justify-center"
             >
-              <div className="absolute top-4 right-4 text-xs text-house-green/50 font-bold uppercase">Translucent Surface</div>
+              <div className="absolute top-4 right-4 text-xs text-house-green/50 font-bold uppercase">OLED & USB Hub Surface</div>
             </motion.div>
 
             {/* LAYER 2 - MIDDLE (Piezo discs matrix) */}
@@ -102,7 +102,7 @@ export function TechSection() {
               }}
               className="absolute inset-0 bg-gradient-to-br from-zinc-300 to-zinc-500 border border-zinc-400 rounded-xl shadow-md z-10"
             >
-              <div className="absolute bottom-4 left-4 text-xs text-zinc-100/80 font-bold uppercase">Base Chassis</div>
+              <div className="absolute bottom-4 left-4 text-xs text-zinc-100/80 font-bold uppercase">ESP32 Control Base</div>
             </motion.div>
 
           </div>
