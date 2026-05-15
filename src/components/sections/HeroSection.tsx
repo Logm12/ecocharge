@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/Button";
 import { Carousel } from "@/components/ui/Carousel";
-import { Leaf } from "lucide-react";
 
 const PROTOTYPE_IMAGES = [
   "/images/products/prototype-1.jpg",
@@ -14,9 +13,21 @@ export function HeroSection() {
     <section className="relative min-h-[90vh] flex flex-col lg:flex-row items-center bg-canvas px-6 py-16 md:px-12 lg:px-24 overflow-hidden">
       {/* Left Content / Typography Focus */}
       <div className="w-full lg:w-1/2 flex flex-col items-start text-left space-y-6 z-10">
-        <div className="flex items-center space-x-2 text-brand-green font-bold uppercase tracking-widest text-sm bg-brand-green/10 px-3 py-1 rounded-full">
-          <Leaf size={16} />
-          <span>Green Future</span>
+        {/* Logo Containers - Auto resizing based on original aspects */}
+        <div className="flex items-center gap-5 flex-wrap">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img 
+            src="/images/logos/logo-1.png" 
+            alt="Partner Logo 1" 
+            className="h-10 md:h-12 w-auto object-contain max-w-[180px]"
+          />
+          <div className="h-8 w-px bg-house-green/10 self-center"></div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img 
+            src="/images/logos/logo-2.png" 
+            alt="Partner Logo 2" 
+            className="h-10 md:h-12 w-auto object-contain max-w-[180px]"
+          />
         </div>
 
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-house-green max-w-xl tracking-tight-brand">
