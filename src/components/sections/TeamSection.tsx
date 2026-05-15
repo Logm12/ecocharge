@@ -11,7 +11,7 @@ const TEAM = [
   { name: "Tran Quang Tiep", role: "International School - Vietnam National University", image: "/images/teams/Tran Quang Tiep.jpg" },
   { name: "To Ngoc Minh", role: "International School - Vietnam National University", image: "/images/teams/To Ngoc Minh.jpg" },
   { name: "Mac Pham Thien Long", role: "International School - Vietnam National University", image: "/images/teams/Mac Pham Thien Long.jpg" },
-  { name: "Le Dai Thanh", role: "International School - Vietnam National University", image: "/images/teams/Le Dai Thanh.jpg" },
+  { name: "Le Dai Thanh", role: "VNU University of Economics and Business", image: "/images/teams/Le Dai Thanh.jpg" },
 ];
 
 export function TeamSection() {
