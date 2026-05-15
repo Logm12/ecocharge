@@ -17,8 +17,8 @@ export function TechSection() {
   const layer2Y = useTransform(scrollYProgress, [0, 1], [0, 0]);    // Mid stays center
   const layer3Y = useTransform(scrollYProgress, [0, 1], [0, 200]);  // Bottom
 
-  // Fading in information text based on distance
-  const textOpacity = useTransform(scrollYProgress, [0.3, 0.6], [0, 1]);
+  // Fading in information text based on distance - making it immediately clearer
+  const textOpacity = useTransform(scrollYProgress, [0, 0.4], [0.3, 1]);
   
   // Scale and rotate effects for overall container entrance
   const scale = useTransform(scrollYProgress, [0, 0.2], [0.9, 1]);
