@@ -16,16 +16,16 @@ export function HeroSection() {
         {/* Logo Containers - Auto resizing based on original aspects */}
         <div className="flex items-center gap-5 flex-wrap">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img 
-            src="/images/logos/logo-1.png" 
-            alt="Partner Logo 1" 
+          <img
+            src="/images/logos/logo-1.png"
+            alt="Partner Logo 1"
             className="h-10 md:h-12 w-auto object-contain max-w-[180px]"
           />
           <div className="h-8 w-px bg-house-green/10 self-center"></div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img 
-            src="/images/logos/logo-2.png" 
-            alt="Partner Logo 2" 
+          <img
+            src="/images/logos/logo-2.png"
+            alt="Partner Logo 2"
             className="h-10 md:h-12 w-auto object-contain max-w-[180px]"
           />
         </div>
@@ -39,9 +39,11 @@ export function HeroSection() {
         </p>
 
         <div className="pt-4">
-          <Button className="text-lg px-8 py-4">
-            Download Pitch Deck
-          </Button>
+          <a href="/EcoCharge - English verse.pptx" download="EcoCharge - English verse.pptx">
+            <Button className="text-lg px-8 py-4">
+              Download Pitch Deck
+            </Button>
+          </a>
         </div>
       </div>
 
